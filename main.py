@@ -23,7 +23,10 @@ def summarize_text(text, summary_type):
         prompt = f"Summarize the text in 3 bullet points: {text}"
 
     response = llm.complete(prompt)
-    return response
+    
+    # Extract the 'text' field from the response to avoid metadata
+    summary = response.get("text", "").strip()
+    return summary
 
 # Streamlit app
 st.title("📄 Text Summarizer 🤖")
