@@ -11,7 +11,7 @@ api_key = os.getenv("GROQ_API_KEY")
 
 # Initialize the Groq model
 llm = Groq(model="llama3-70b-8192", api_key=api_key)
- 
+
 def summarize_text(text, summary_type):
     if summary_type == "Normal Summary":
         prompt = f"Summarize the text: {text}"
@@ -23,7 +23,7 @@ def summarize_text(text, summary_type):
         prompt = f"Summarize the text in 3 bullet points: {text}"
 
     response = llm.complete(prompt)
-    return response
+    return response.get("text", "Summary could not be generated.")  # Extracts only the 'text' field
 
 # Streamlit app
 st.title("📄 Text Summarizer 🤖")
