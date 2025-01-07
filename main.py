@@ -23,7 +23,7 @@ def summarize_text(text, summary_type):
         prompt = f"Summarize the text in 3 bullet points: {text}"
 
     response = llm.complete(prompt)
-    return response.get("text", "Summary could not be generated.")  # Extracts only the 'text' field
+    return response.text  # Access the 'text' attribute directly
 
 # Streamlit app
 st.title("📄 Text Summarizer 🤖")
